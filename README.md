@@ -1,1 +1,1 @@
-# terraform1
+# Project: Wordpress Application Deploy through Terraform on AWS infrastructure
