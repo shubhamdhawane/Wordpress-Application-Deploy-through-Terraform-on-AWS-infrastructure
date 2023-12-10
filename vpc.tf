@@ -181,3 +181,4 @@ resource "aws_route_table_association" "database_subnet_association-1" {
 resource "aws_route_table_association" "database_subnet_association-2" {
   route_table_id = aws_route_table.skyage-database-rt.id
   subnet_id      = aws_subnet.skyage-database-subnet-2.id
+}
