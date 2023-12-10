@@ -142,7 +142,7 @@ resource "aws_route_table" "skyage-private-rt" {
 }
 
 # Associate both private subnets with private route table
-resource "aws_route_table_association" "private_subnet_association-1" {   skyage-database-subnet-1
+resource "aws_route_table_association" "private_subnet_association-1" {   
   route_table_id = aws_route_table.skyage-private-rt.id
   subnet_id      = aws_subnet.private_subnet1.id
 }
