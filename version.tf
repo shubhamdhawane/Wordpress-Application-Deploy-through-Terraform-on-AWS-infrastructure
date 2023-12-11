@@ -10,6 +10,6 @@ terraform {
 
 # provider block
 provider "aws" {
-  region  = "us-east-1" #Asia Pacific (north.virgini)#
+  region  = "us-east-1" #us east (north.virginia)#
   profile = "cloud-admin"    #iam-user #
 }
