@@ -33,7 +33,7 @@ resource "aws_security_group" "skyage-ALB-SG" {
   description = "Allow port 80 and 443 from anywhere"
   vpc_id      = aws_vpc.skyage.id
   tags = {
-    "Name" = "sg-for-pr8-alb"
+    "Name" = "sg-for-skyage-alb"
   }
   ingress {
     description = "Allow port 80 from anywhere"
