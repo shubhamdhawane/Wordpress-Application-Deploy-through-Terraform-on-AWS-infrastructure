@@ -24,7 +24,7 @@ resource "aws_db_instance" "db_instance" {
   db_subnet_group_name     = aws_db_subnet_group.db_sub_group.id
   multi_az                 = false
   vpc_security_group_ids   = [aws_security_group.skyage-DB-SG.id]
-  availability_zone        = "us-east-1b"
+  availability_zone        = "us-east-1a"
   port                     = 3306
   publicly_accessible      = false
   skip_final_snapshot      = true
