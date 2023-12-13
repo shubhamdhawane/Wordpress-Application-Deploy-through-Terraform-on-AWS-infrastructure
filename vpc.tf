@@ -55,7 +55,7 @@ resource "aws_subnet" "private_subnet2" {
 resource "aws_subnet" "skyage-database-subnet-1" {
   vpc_id            = aws_vpc.skyage.id
   cidr_block        = "172.16.5.0/24"
-  availability_zone = "us-east-1c"
+  availability_zone = "us-east-1a"
   tags = {
     Name = "database-subnet-1"
   }
@@ -64,7 +64,7 @@ resource "aws_subnet" "skyage-database-subnet-1" {
 resource "aws_subnet" "skyage-database-subnet-2" {
   vpc_id            = aws_vpc.skyage.id
   cidr_block        = "172.16.6.0/24"
-  availability_zone = "us-east-1c"
+  availability_zone = "us-east-1b"
   tags = {
     Name = "database-subnet-2"
   }
