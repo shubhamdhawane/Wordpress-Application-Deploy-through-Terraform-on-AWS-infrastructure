@@ -123,7 +123,7 @@ resource "aws_instance" "skyage-app-server-2" {
   key_name                    = "demo"
   subnet_id                   = aws_subnet.private_subnet2.id
   associate_public_ip_address = "false"
-  vpc_security_group_ids      = [aws_security_group.wp-App-SG.id]
+  vpc_security_group_ids      = [aws_security_group.skyage-App-SG.id]
   user_data                   = base64encode(local.user_data)
   #user_data = file("deploy-app.sh")
   tags = {
