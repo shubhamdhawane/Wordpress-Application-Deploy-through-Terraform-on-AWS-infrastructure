@@ -16,7 +16,7 @@ resource "aws_db_subnet_group" "db_sub_group" {
 resource "aws_db_instance" "db_instance" {
   identifier               = "rds-server"
   engine                   = "mysql"
-  db_name                  = "skyage_RDS_DB"
+  db_name                  = "HR_RDS_DB"
   username                 = "admin"
   password                 = "admin123"
   instance_class           = "db.t3.micro"
