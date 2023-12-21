@@ -121,7 +121,7 @@ resource "aws_instance" "skyage-app-server-2" {
   ami                         = data.aws_ami.amazon_linux_2.id
   instance_type               = "t2.micro"
   key_name                    = "demo"
-  subnet_id                   = aws_subnet.skyage-database-subnet-2.id
+  subnet_id                   = aws_subnet.private_subnet2.id
   associate_public_ip_address = "false"
   vpc_security_group_ids      = [aws_security_group.wp-App-SG.id]
   user_data                   = base64encode(local.user_data)
