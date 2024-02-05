@@ -105,18 +105,47 @@ resource "aws_security_group" "skyage-App-SG" {
 
 
 ###################################
-# security group for RDS-server
+# security group for nosql-server
 ###################################
 resource "aws_security_group" "skyage-DB-SG" {
   name        = "DB-SG"
-  description = "Allow port 3306 from App-SG only"
+  description = "Allow port 7000 from App-SG only"
   vpc_id      = aws_vpc.skyage.id
   tags = {
-    "Name" = "sg-for-RDS-server"
+    "Name" = "sg-for-nosql-server"
   }
   ingress {
-    from_port       = 3306
-    to_port         = 3306
+    from_port       = 7000
+    to_port         = 7000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.skyage-App-SG.id]
+    description     = "allow-trrafic-from-App-SG-only"
+  }
+
+  ingress {
+    from_port       = 7000
+    to_port         = 7000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.skyage-App-SG.id]
+    description     = "allow-trrafic-from-App-SG-only"
+  }
+  ingress {
+    from_port       = 8000
+    to_port         = 8000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.skyage-App-SG.id]
+    description     = "allow-trrafic-from-App-SG-only"
+  }
+  ingress {
+    from_port       = 7001
+    to_port         = 7001
+    protocol        = "tcp"
+    security_groups = [aws_security_group.skyage-App-SG.id]
+    description     = "allow-trrafic-from-App-SG-only"
+  }
+  ingress {
+    from_port       = 9042
+    to_port         = 9042
     protocol        = "tcp"
     security_groups = [aws_security_group.skyage-App-SG.id]
     description     = "allow-trrafic-from-App-SG-only"
