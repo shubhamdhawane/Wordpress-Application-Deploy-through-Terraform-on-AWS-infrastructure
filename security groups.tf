@@ -1,10 +1,11 @@
+
 #####################################
 # security group for bastion-server
 #####################################
 resource "aws_security_group" "skyage-bastion-sg" {
   name        = "bastion-sg"
   description = "Allow port 22 from anywhere"
-  vpc_id      = aws_vpc.skyage.id
+  vpc_id      = aws_vpc.skyage_vpc.id
   tags = {
     "Name" = "sg-for-bastion-server"
   }
@@ -31,7 +32,7 @@ resource "aws_security_group" "skyage-bastion-sg" {
 resource "aws_security_group" "skyage-ALB-SG" {
   name        = "ALB-SG"
   description = "Allow port 80 and 443 from anywhere"
-  vpc_id      = aws_vpc.skyage.id
+  vpc_id      = aws_vpc.skyage_vpc.id
   tags = {
     "Name" = "sg-for-skyage-alb"
   }
@@ -67,7 +68,7 @@ resource "aws_security_group" "skyage-ALB-SG" {
 resource "aws_security_group" "skyage-App-SG" {
   name        = "App-SG"
   description = "Allow port 22 from bastion-sg and 80 from ALB-SG"
-  vpc_id      = aws_vpc.skyage.id
+  vpc_id      = aws_vpc.skyage_vpc.id
   tags = {
     "Name" = "sg-for-app-servers"
   }
@@ -105,47 +106,18 @@ resource "aws_security_group" "skyage-App-SG" {
 
 
 ###################################
-# security group for nosql-server
+# security group for RDS-server
 ###################################
 resource "aws_security_group" "skyage-DB-SG" {
   name        = "DB-SG"
-  description = "Allow port 7000 from App-SG only"
-  vpc_id      = aws_vpc.skyage.id
+  description = "Allow port 3306 from App-SG only"
+  vpc_id      = aws_vpc.skyage_vpc.id
   tags = {
-    "Name" = "sg-for-nosql-server"
+    "Name" = "sg-for-RDS-server"
   }
   ingress {
-    from_port       = 7000
-    to_port         = 7000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.skyage-App-SG.id]
-    description     = "allow-trrafic-from-App-SG-only"
-  }
-
-  ingress {
-    from_port       = 7000
-    to_port         = 7000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.skyage-App-SG.id]
-    description     = "allow-trrafic-from-App-SG-only"
-  }
-  ingress {
-    from_port       = 8000
-    to_port         = 8000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.skyage-App-SG.id]
-    description     = "allow-trrafic-from-App-SG-only"
-  }
-  ingress {
-    from_port       = 7001
-    to_port         = 7001
-    protocol        = "tcp"
-    security_groups = [aws_security_group.skyage-App-SG.id]
-    description     = "allow-trrafic-from-App-SG-only"
-  }
-  ingress {
-    from_port       = 9042
-    to_port         = 9042
+    from_port       = 3306
+    to_port         = 3306
     protocol        = "tcp"
     security_groups = [aws_security_group.skyage-App-SG.id]
     description     = "allow-trrafic-from-App-SG-only"
